@@ -3,8 +3,18 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        writeFile(file: 'teste-file.txt', text: 'Ol· Mundo', encoding: 'utf-8')
+        writeFile(file: 'teste-file.txt', text: 'Ol√° Mundo', encoding: 'utf-8')
         sh 'cat teste-file.txt'
+      }
+    }
+    stage('Verificar') {
+      steps {
+        input(message: 'Deseja continuar?', id: 'check', ok: 'Sim')
+      }
+    }
+    stage('Mensagem Final') {
+      steps {
+        echo 'Fim'
       }
     }
   }
